@@ -127,9 +127,9 @@ exports.flush_money = async function () {
 
     const _ratio = await ratio.get_ratio();
     const exchanged_cola_amount = new BigNumber(amount)
-      .multipliedBy(_ratio)
-      .dividedBy(wei_coefficient)
-      .integerValue(BigNumber.ROUND_FLOOR); 
+      .dividedBy(wei_coefficient)      
+	  .integerValue(BigNumber.ROUND_FLOOR)
+      .multipliedBy(_ratio);
     const exchanged_popk_amount = exchanged_cola_amount.dividedBy(_ratio).multipliedBy(wei_coefficient); 
     const not_exchanged_popk_amount = new BigNumber(amount).minus(exchanged_popk_amount); 
 
